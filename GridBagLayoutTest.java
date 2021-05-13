@@ -260,10 +260,10 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 		circleLoad.setFont(new Font("", Font.PLAIN, 16));				//We keep the default type of font but we increase its size.
 		popupPanel.add(circleLoad, BorderLayout.CENTER);
 		loading.add(popupPanel);
-	    loading.pack();
-	    loading.setLocationRelativeTo(popupFrame);
-	    loading.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-	    loading.setModal(true);
+		loading.pack();
+		loading.setLocationRelativeTo(popupFrame);
+		loading.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		loading.setModal(true);
 		
 	}
 
