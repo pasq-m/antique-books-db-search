@@ -279,30 +279,30 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				try {
 					
 					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
-					    @Override
-					    protected Boolean doInBackground() throws Exception {
-					    	
-					    	AbeWebClient.getElements("https://www.abebooks.com/collections/sc/atlases/2dzei9jydsjGsGfJtSsP4H?cm_sp=ccbrowse-_-p0-_-collections");
-					    	
-					    	return true;
-					    }
-					    
-					    protected void done() {
-					  
-					    	loading.dispose();
-					    }
+						@Override
+						protected Boolean doInBackground() throws Exception {
+						
+							AbeWebClient.getElements("https://www.abebooks.com/collections/sc/atlases/2dzei9jydsjGsGfJtSsP4H?cm_sp=ccbrowse-_-p0-_-collections");
+						
+							return true;
+						}
+					
+						protected void done() {
+					
+							loading.dispose();
+						}
 						
 					};
 					
 					worker.execute();
 					loading.setVisible(true);
 					
-				    try {
-				        worker.get();
-				        popupButton1 = true;
-				    } catch (Exception e1) {
-				        e1.printStackTrace();
-				    }
+					try {
+						worker.get();
+						popupButton1 = true;
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -322,30 +322,30 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				try {
 					
 					SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
-					    @Override
-					    protected Boolean doInBackground() throws Exception {
-					    	
-					    	EbaySoldMapWebClient.getElements("https://www.ebay.com/sch/29223/i.html?_from=R40&_nkw=map&LH_TitleDesc=0&_sop=12&_sadis=200&LH_Complete=1&LH_Complete=1&LH_Sold=1");
+						@Override
+						protected Boolean doInBackground() throws Exception {
+						
+							EbaySoldMapWebClient.getElements("https://www.ebay.com/sch/29223/i.html?_from=R40&_nkw=map&LH_TitleDesc=0&_sop=12&_sadis=200&LH_Complete=1&LH_Complete=1&LH_Sold=1");
 							
-					    	return true;
-					    }
-					    
-					    protected void done() {
-					  
-					    	loading.dispose();
-					    }
+							return true;
+						}
+					
+						protected void done() {
+					
+							loading.dispose();
+						}
 						
 					};
 					
 					worker.execute();
 					loading.setVisible(true);
 					
-				    try {
-				        worker.get();
-				        popupButton2 = true;
-				    } catch (Exception e1) {
-				        e1.printStackTrace();
-				    }
+					try {
+						worker.get();
+						popupButton2 = true;
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -411,8 +411,8 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				String searchTermCommand = "SELECT * FROM MAPS WHERE TITLE LIKE '%"+searchTerm+"%'";
 				
 				try (Connection conn = connFromInsert.connect();
-			        Statement stmt  = conn.createStatement();
-			        ResultSet rs    = stmt.executeQuery(searchTermCommand)) {
+					Statement stmt  = conn.createStatement();
+					ResultSet rs    = stmt.executeQuery(searchTermCommand)) {
 					System.out.println(rs.getString(1));					//We have to select by column (there is only 1 column from the resultSet) because with the name "AUCTION_SOLD_AT" it doesn't finds
 																			//anything.					
 					
@@ -422,10 +422,10 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 																							//line below; we then use again "\n" because we want to leave a blank line between title and results.
 					
 					while (rs.next()) {
-		                System.out.println(rs.getString(1));
-		                resultsField.append((rs.getString(1))+"\n");				//Here with ".append()" method instead, we append to the set resultsField JTextArea in each line the results,
-		                															//that would be set in each new line thank to the "\n".
-		            }
+						System.out.println(rs.getString(1));
+						resultsField.append((rs.getString(1))+"\n");				//Here with ".append()" method instead, we append to the set resultsField JTextArea in each line the results,
+						//that would be set in each new line thank to the "\n".
+					}
 					
 					popupButton5 = true;
 				} catch(SQLException er) {
@@ -448,15 +448,15 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				String searchYearRangeCommand = "SELECT * FROM MAPS WHERE YEAR BETWEEN "+startingYearText+" AND "+endingYearText+"";
 				
 				try (Connection conn = connFromInsert.connect();
-			        Statement stmt  = conn.createStatement();
-			        ResultSet rs    = stmt.executeQuery(searchYearRangeCommand)) {
+					Statement stmt  = conn.createStatement();
+					ResultSet rs    = stmt.executeQuery(searchYearRangeCommand)) {
 					System.out.println(rs.getString(1));
 					resultsField.setText("Results for range search \""+ startingYearText +"\"-"+endingYearText+"\":\n\n");
 					
 					while (rs.next()) {
-		                System.out.println(rs.getString(1));
-		                resultsField.append((rs.getString(1))+"\n");
-		            }
+						System.out.println(rs.getString(1));
+						resultsField.append((rs.getString(1))+"\n");
+					}
 					
 					popupButton6 = true;
 				} catch(SQLException er) {
