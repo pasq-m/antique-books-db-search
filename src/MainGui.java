@@ -476,7 +476,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 	
 	public static void main(String[] args) {
 		
-		new GridBagLayoutTestCopy();
+		new MainGui();
 		
 	}
 }
