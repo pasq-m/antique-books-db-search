@@ -81,7 +81,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 	String sqlAvgEbay = "SELECT ROUND(AVG(NULLIF(AUCTION_SOLD_AT, 0))) FROM MAPS";
 	
 	
-	GridBagLayoutTestCopy() {
+	MainGui() {
 		
 		//SETTING FONT SPECIFICS FOR THE LABELS
 		
