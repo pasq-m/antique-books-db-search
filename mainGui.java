@@ -30,30 +30,31 @@ import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
-public class GridBagLayoutTestCopy extends GatherBook implements ActionListener {
+import org.apache.commons.lang3.StringUtils;
+
+public class MainGui extends GatherBook implements ActionListener {
 	
 	//Creating the objects.
 	
 	InsertDataDb connFromInsert = new InsertDataDb();
 	
-	JFrameTest frame = new JFrameTest();
+	JFrameCon frame = new JFrameCon();
 	JPanel panel = new JPanel(new GridBagLayout());	
 	GridBagConstraints c = new GridBagConstraints();
 
-	JLabel labelUpper = new JLabel("A super awesome software for searching antique books DBs!");
+	JLabel labelUpper = new JLabel("Simple Antique Books Finder");
 	
 	
 	JLabel labelOne = new JLabel("Update Abe's DB here:");
 	JLabel labelTwo = new JLabel("Update Ebay's DB here:");
-	JLabel labelThree = new JLabel("Get the average of prices about Abe DB:");
+	JLabel labelThree = new JLabel("Get the average of prices for the Abe DB:");
 	JLabel labelFour = new JLabel("Get the average for Ebay's sold items price:");
 	JLabel labelFive = new JLabel("Search by title - enter a term like \"Medicine\":");
-	JLabel labelSix = new JLabel("Search by year:");
+	JLabel labelSix = new JLabel("Search by year range:");
 	JLabel labelSeven = new JLabel("Insert starting year, like \"1700\":");
 	JLabel labelEight = new JLabel("Insert ending year, like \"1830\":");
 	
 	JButton buttonOne = new JButton("Update DB");
-	JButton buttonBlank = new JButton("PROVA BLANK");
 	JButton buttonTwo = new JButton("Update DB");
 	JButton buttonThree = new JButton("Get average");
 	JButton buttonFour = new JButton("Get average");
@@ -81,7 +82,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 	String sqlAvgEbay = "SELECT ROUND(AVG(NULLIF(AUCTION_SOLD_AT, 0))) FROM MAPS";
 	
 	
-	GridBagLayoutTestCopy() {
+	MainGui() {
 		
 		//SETTING FONT SPECIFICS FOR THE LABELS
 		
@@ -413,7 +414,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				try (Connection conn = connFromInsert.connect();
 					Statement stmt  = conn.createStatement();
 					ResultSet rs    = stmt.executeQuery(searchTermCommand)) {
-					System.out.println(rs.getString(1));					//We have to select by column (there is only 1 column from the resultSet) because with the name "AUCTION_SOLD_AT" it doesn't finds
+					//System.out.println(rs.getString(1));					//We have to select by column (there is only 1 column from the resultSet) because with the name "AUCTION_SOLD_AT" it doesn't finds
 																			//anything.					
 					
 					
@@ -422,7 +423,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 																							//line below; we then use again "\n" because we want to leave a blank line between title and results.
 					
 					while (rs.next()) {
-						System.out.println(rs.getString(1));
+						//System.out.println(rs.getString(1));
 						resultsField.append((rs.getString(1))+"\n");				//Here with ".append()" method instead, we append to the set resultsField JTextArea in each line the results,
 						//that would be set in each new line thank to the "\n".
 					}
@@ -441,7 +442,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				
 			case "searchYear":													//Bound to "buttonFour".
 
-				Boolean popupButton6 = false;
+				//Boolean popupButton6 = false;
 				String startingYearText = textTwoStart.getText();
 				String endingYearText = textTwoEnd.getText();
 				
@@ -450,23 +451,31 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 				try (Connection conn = connFromInsert.connect();
 					Statement stmt  = conn.createStatement();
 					ResultSet rs    = stmt.executeQuery(searchYearRangeCommand)) {
-					System.out.println(rs.getString(1));
-					resultsField.setText("Results for range search \""+ startingYearText +"\"-"+endingYearText+"\":\n\n");
+					//System.out.println(rs.getString(1));					
 					
-					while (rs.next()) {
-						System.out.println(rs.getString(1));
-						resultsField.append((rs.getString(1))+"\n");
+					if (rs.next() == false) { 
+						System.out.println("ResultSet is empty in Java");
+						JOptionPane.showMessageDialog(null, "No results found for years range \""+ startingYearText +"\"-\""+endingYearText+"\"");
+					} else {
+						
+						do {
+							resultsField.append((rs.getString(1))+"\n");
+							//System.out.println(data); 
+							} 
+						while (rs.next());
+						
+						JOptionPane.showMessageDialog(null, "Search for years range \""+ startingYearText +"\"-\""+endingYearText+"\" done");
 					}
 					
-					popupButton6 = true;
+					//popupButton6 = true;
 				} catch(SQLException er) {
-					System.out.println(er.getMessage());
-					JOptionPane.showMessageDialog(null, "No results found for years range \""+ startingYearText +"\"-\""+endingYearText+"\"");
+					//System.out.println(er.getMessage());
+					//JOptionPane.showMessageDialog(null, "No results found for years range \""+ startingYearText +"\"-\""+endingYearText+"\"");
 				}
 				
-				if (popupButton6 == true) {
-					JOptionPane.showMessageDialog(null, "Search for years range \""+ startingYearText +"\"-\""+endingYearText+"\" done");
-				}
+				//if (popupButton6 == true) {
+					//JOptionPane.showMessageDialog(null, "Search for years range \""+ startingYearText +"\"-\""+endingYearText+"\" done");
+				//}
 				
 				break;
 				
@@ -476,7 +485,7 @@ public class GridBagLayoutTestCopy extends GatherBook implements ActionListener 
 	
 	public static void main(String[] args) {
 		
-		new GridBagLayoutTestCopy();
+		new MainGui();
 		
 	}
 }
