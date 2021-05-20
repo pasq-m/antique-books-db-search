@@ -1,4 +1,4 @@
-# antique-books-db-search
+# Simple Antique Books Finder
 
 A simple program built for learning purposes.
 The basic idea was to explore the best way to scrape data from the web and store it inside a simple database (SQLite) using Java.
