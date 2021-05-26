@@ -1,3 +1,5 @@
+package com.github.database;
+
 import org.sqlite.SQLiteDataSource;
 
 import java.sql.*;
