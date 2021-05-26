@@ -1,3 +1,5 @@
+package com.github.scraper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -11,6 +13,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.github.database.CreateFirstDb;
+import com.github.database.InsertDataDb;
+import com.github.util.GatherBook;
 
 public class EbaySoldMapSub extends GatherBook {
 	
