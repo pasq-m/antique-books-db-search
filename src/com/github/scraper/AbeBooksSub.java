@@ -1,3 +1,5 @@
+package com.github.scraper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +8,10 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+
+import com.github.database.CreateFirstDb;
+import com.github.database.InsertDataDb;
+import com.github.util.GatherBook;
 
 public class AbeBooksSub extends GatherBook {
 	
