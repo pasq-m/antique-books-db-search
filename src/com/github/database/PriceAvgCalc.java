@@ -1,4 +1,5 @@
-import java.sql.DriverManager;
+package com.github.database;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
