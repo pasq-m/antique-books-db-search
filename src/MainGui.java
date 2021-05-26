@@ -1,21 +1,16 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -26,9 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+
+import com.github.database.InsertDataDb;
+import com.github.database.PriceAvgCalc;
+import com.github.scraper.AbeBooksSub;
+import com.github.scraper.EbaySoldMapSub;
+import com.github.util.GatherBook;
+import com.github.util.JFrameCon;
 
 import org.apache.commons.lang3.StringUtils;
 
