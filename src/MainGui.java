@@ -488,4 +488,9 @@ public class MainGui extends GatherBook implements ActionListener {
 		new MainGui();
 		
 	}
+	
+	@Override
+	public void getElements(String url) throws Exception {		//We have to override the method from GatherBook abstract class
+		// TODO Auto-generated method stub			
+	}
 }
