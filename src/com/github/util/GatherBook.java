@@ -2,7 +2,7 @@ package com.github.util;
 
 import java.util.ArrayList;
 
-public class GatherBook {
+public abstract class GatherBook {
 	
 	protected int x = 0;					//Used as a counter in "AbeBooksSub".
 	protected int x2 = 1;					//Used as a counter in "EbaySoldSub" and "EbaySoldMapSub".
@@ -27,7 +27,6 @@ public class GatherBook {
 	protected static double d1;							//"d1" is the result of the average calculation provided by the class "PriceAvgCalc".
     
 	ArrayList<String[]> superList;
-	public void getElements(String url) throws Exception {	//Method to extract raw data from the website(s).
+	public abstract void getElements(String url) throws Exception;	//Method to extract raw data from the website(s).
 		//Empty as it has to be override by others sub-classes.
-	}
 }
