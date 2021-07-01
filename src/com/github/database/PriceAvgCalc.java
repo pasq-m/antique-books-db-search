@@ -25,4 +25,9 @@ public class PriceAvgCalc extends GatherBook  {
 		
 		return d1;
 	}
+	
+	@Override
+	public void getElements(String url) throws Exception {			//We have to override the abstract method from GatherBook abstract class
+		
+	}
 }
