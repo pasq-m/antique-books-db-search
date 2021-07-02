@@ -47,8 +47,8 @@ public class AbeBooksSub extends GatherBook {
 		        
 				InsertDataDb insertData = new InsertDataDb();			//Here we run another external method to create a new instance object of the "InsertDataDb" class, so we can insert the data inside
 		        														//the rows of the created DB at every next while loop.
-				insertData.insert(GatherBook.title, GatherBook.yearInt, GatherBook.publisher, GatherBook.dateRange, GatherBook.format, GatherBook.originalOrReprod, GatherBook.printTech, GatherBook.type, GatherBook.priceTagNotAuctionDoub, GatherBook.auctionSoldAtDoub);
-		        
+				InsertData.insert(title, publisher, yearInt, insertData.nullCheck(dateRange, format, originalOrReprod, printTech, type), priceTagNotAuctionDoub, auctionSoldAtDoub);
+				
 				priceTagNotAuctionDoub = 0.0d;							//Here we reset the var because we want it to be reset when used in the new object of the class "EbaySoldMapSub", as it has to be
 																		//0.0 in the elements of the DB scraped from Ebay, because it represents items still not sold from other websites. 
 				megaList.add(new String[4]);							//Create an array inside the list "megaList".
