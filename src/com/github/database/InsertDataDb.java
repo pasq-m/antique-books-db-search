@@ -1,6 +1,9 @@
 package com.github.database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class InsertDataDb {
 	
@@ -16,23 +19,25 @@ public class InsertDataDb {
 		return conn;
 	}
 	
-	public int insert(String titleArg, int yearArg, String publisherArg, String daterangeArg, String formatArg, String originalArg, String printtechniqueArg, String typeArg, double pricetagnotauctionArg, double auctionsoldatArg) {
+	ArrayList<String> filteredString;
+	
+	public ArrayList<String> nullCheck(String... bookData) {
 		
-		if (daterangeArg == null) {
-			daterangeArg = "Vuoto"; 
-		} 
-		if (formatArg == null) {
-			formatArg = "Vuoto";
+		filteredString = new ArrayList<String>();
+		
+		for (String book : bookData) {
+			if (book == null) {
+				book = "Vuoto";				
+			}
+			
+			filteredString.add(book);
 		}
-		if (originalArg == null) {
-			originalArg = "Vuoto";
-		}
-		if (printtechniqueArg == null) {
-			printtechniqueArg = "Vuoto";
-		}
-		if (typeArg == null) {
-			typeArg = "Vuoto";
-		}
+		
+		return filteredString;
+	}
+	
+	public int insert(String titleArg, String publisherArg, int yearArg, ArrayList<String> filter, double pricetagnotauctionArg, double auctionsoldatArg) {
+				
 		if (pricetagnotauctionArg == 0.0d) {
 			pricetagnotauctionArg = 0;
 		}
@@ -50,11 +55,12 @@ public class InsertDataDb {
 			ps.setString(1, titleArg);
 			ps.setInt(2, yearArg);
 			ps.setString(3, publisherArg);
-			ps.setString(4, daterangeArg);
-			ps.setString(5, formatArg);
-			ps.setString(6, originalArg);
-			ps.setString(7, printtechniqueArg);
-			ps.setString(8, typeArg);
+			ps.setString(4, filteredString.get(0));			//We extract the first element of the filtered list that it will be the "dateRange" value that will be passed in the
+	        								//"nullCheck()" method as first parameter.
+			ps.setString(5, filteredString.get(1));			//Like above, in order it will be the second parameter passed and then stored in the filtered list returned, the "format".
+			ps.setString(6, filteredString.get(2));
+			ps.setString(7, filteredString.get(3));
+			ps.setString(8, filteredString.get(4));
 			ps.setDouble(9, pricetagnotauctionArg);
 			ps.setDouble(10, auctionsoldatArg);
 			numRowsInserted = ps.executeUpdate();
