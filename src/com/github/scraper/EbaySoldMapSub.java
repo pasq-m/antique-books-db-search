@@ -147,7 +147,7 @@ public class EbaySoldMapSub extends GatherBook {
 	    		createDbOne.createDb();
 	        }
 	        InsertDataDb insertData = new InsertDataDb();			//Here we run another external method to insert the data inside the rows of the created DB at every next while loop.
-			insertData.insert(GatherBook.title, yearInt, GatherBook.publisher, GatherBook.dateRange, GatherBook.format, GatherBook.originalOrReprod, GatherBook.printTech, GatherBook.type, GatherBook.priceTagNotAuctionDoub, GatherBook.auctionSoldAtDoub);
+		insertData.insert(title, publisher, yearInt, insertData.nullCheck(dateRange, format, originalOrReprod, printTech, type), priceTagNotAuctionDoub, auctionSoldAtDoub);
 	        
 	        insideArray = megaList.get(z);		//It bounds the created array of 10 elements above to a specific index position ("z") and put inside of it the values gathered (Title, Authors, etc.).
 	        
