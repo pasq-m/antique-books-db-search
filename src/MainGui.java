@@ -451,7 +451,8 @@ public class MainGui extends GatherBook implements ActionListener {
 				try (Connection conn = connFromInsert.connect();
 					Statement stmt  = conn.createStatement();
 					ResultSet rs    = stmt.executeQuery(searchYearRangeCommand)) {
-					//System.out.println(rs.getString(1));					
+					
+					resultsField.setText("Results for years range \""+startingYearText+ "\" - \""+endingYearText+"\":\n\n");
 					
 					if (rs.next() == false) { 
 						System.out.println("ResultSet is empty in Java");
