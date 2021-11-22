@@ -27,20 +27,20 @@ public class EbaySoldMapSub extends GatherBook {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");  
 		WebDriver driver = new ChromeDriver(options);
-        driver.get(url);
-        
-        WebDriverWait wait = new WebDriverWait(driver, 5);		//Wait for the "All Listing" element to load as a way to wait that most of the page is already loaded before continue.
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class= 'carousel__viewport']")));
-    	WebElement auction;
-    	auction = driver.findElement(By.xpath("//li[3][@class='fake-tabs__item btn']/a"));
-    	auction.click();		//We need to click on an element of the page to activate the page before the real clicking below.
-		
-        List<String[]> megaList = new ArrayList<String[]>();	//We create the main list where we will store every book data as an array (a list of arrays).
-        //Check if element is present on the website, if yes, continue to the next element, if not, stop the iteration and set the length of the elements - 1 as the last elements is not present.
-        //This way we can know every time, how many elements to scrape are present on the page.
-        int counter = 0;
-        List<WebElement> elementList = driver.findElements(By.xpath("//ul[@class='srp-results srp-list clearfix']/li[contains(@class,'s-item')]"));
-        for (WebElement element : elementList) {	//We count each element presents in the "elementList", that is the total books present after filtered by "Buy Now" button on the page.
+		driver.get(url);
+
+		WebDriverWait wait = new WebDriverWait(driver, 5);		//Wait for the "All Listing" element to load as a way to wait that most of the page is already loaded before continue.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class= 'carousel__viewport']")));
+		WebElement auction;
+		auction = driver.findElement(By.xpath("//li[3][@class='fake-tabs__item btn']/a"));
+		auction.click();		//We need to click on an element of the page to activate the page before the real clicking below.
+
+		List<String[]> megaList = new ArrayList<String[]>();	//We create the main list where we will store every book data as an array (a list of arrays).
+		//Check if element is present on the website, if yes, continue to the next element, if not, stop the iteration and set the length of the elements - 1 as the last elements is not present.
+		//This way we can know every time, how many elements to scrape are present on the page.
+		int counter = 0;
+		List<WebElement> elementList = driver.findElements(By.xpath("//ul[@class='srp-results srp-list clearfix']/li[contains(@class,'s-item')]"));
+		for (WebElement element : elementList) {	//We count each element presents in the "elementList", that is the total books present after filtered by "Buy Now" button on the page.
         	counter++;								//This way we can then use the counter as a length parameter to know how many elements loop in the page without errors.
         }
         
