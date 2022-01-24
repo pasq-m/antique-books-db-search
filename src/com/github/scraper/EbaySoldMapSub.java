@@ -41,8 +41,8 @@ public class EbaySoldMapSub extends GatherBook {
 		int counter = 0;
 		List<WebElement> elementList = driver.findElements(By.xpath("//ul[@class='srp-results srp-list clearfix']/li[contains(@class,'s-item')]"));
 		for (WebElement element : elementList) {	//We count each element presents in the "elementList", that is the total books present after filtered by "Buy Now" button on the page.
-        	counter++;								//This way we can then use the counter as a length parameter to know how many elements loop in the page without errors.
-        }
+			counter++;				//This way we can then use the counter as a length parameter to know how many elements loop in the page without errors.
+		}
         
         while (x2 < counter) {
         	//We have to click on each listing first to analyze others details like author.
