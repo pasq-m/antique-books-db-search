@@ -20,14 +20,10 @@ public class AbeBooksSub extends GatherBook {
 			final HtmlPage page = webClient.getPage(url);
 			webClient.waitForBackgroundJavaScript(5000);	//It's fundamental to obtain the price value as does it seems that we have to wait a little bit before obtaining the price tag on the webpage.
 			List<String[]> megaList = new ArrayList<String[]>();												//We create the main list where we will store every book data as an array (a list of arrays).
-			
-			int counter = 0;
+						
 			DomNodeList<DomNode> elementList = page.querySelectorAll("div.collection-item");
-			for (DomNode element : elementList) {											//We count each element presents in the "elementList", that is the total books present by default in the page.
-	        	counter++;	        												//This way we can then use the counter as a length parameter to know how many elements loop in the page without errors.
-			}
 			
-			while (x < counter) {
+			while (x < elementList.size()) {											//We use the size of the list as a length parameter to know how many elements loop in the page without errors.
 	        	
 				title = page.querySelector("#collection > div:nth-child(" + w + ") > div > a > div > div.title").getTextContent();	//We got the text using the "getTextContent()" method and String type.
 				publisher = page.querySelector("#collection > div:nth-child(" + w + ") > div > a > div > div.authors").getTextContent();
